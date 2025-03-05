@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct UserDetailsView: View {
     @EnvironmentObject var user: User
@@ -18,7 +19,12 @@ struct UserDetailsView: View {
                 Spacer()
                 
                 Button {
-                    
+                    let result = try? Auth.auth().signOut()
+                    if let _ = result {
+                        user.email = ""
+                        user.password = ""
+                        user.isAuthenticated = false
+                    }
                 } label: {
                     ZStack{
                         Rectangle()

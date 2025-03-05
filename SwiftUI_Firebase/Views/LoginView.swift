@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct LoginView: View {
     @EnvironmentObject var user: User
@@ -34,7 +35,12 @@ struct LoginView: View {
                 }.padding()
                 
                 Button {
-                    
+                    Task{
+                        let result = try? await Auth.auth().createUser(withEmail: user.email, password: user.password)
+                        if let _ = result{
+                            user.isAuthenticated = true
+                        }
+                    }
                 } label: {
                     ZStack{
                         Rectangle()
@@ -46,7 +52,12 @@ struct LoginView: View {
                     }
                 }.padding()
                 Button {
-                    
+                    Task{
+                        let result = try? await Auth.auth().signIn(withEmail: user.email, password: user.password)
+                        if let _ = result{
+                            user.isAuthenticated = true
+                        }
+                    }
                 } label: {
                     ZStack{
                         Rectangle()
