@@ -8,11 +8,33 @@
 import SwiftUI
 
 struct UserDetailsView: View {
+    @EnvironmentObject var user: User
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            Rectangle()
+                .foregroundStyle(Color.background)
+            VStack {
+                Spacer()
+                
+                Button {
+                    
+                } label: {
+                    ZStack{
+                        Rectangle()
+                            .foregroundStyle(Color.firebaseYellow)
+                            .cornerRadius(20)
+                            .frame(width: 350, height: 50)
+                        Text("Log out")
+                            .font(Constants.textFont)
+                    }
+                }.padding(.bottom, 50)
+            }
+        }
+        .edgesIgnoringSafeArea(.all)
     }
 }
-
 #Preview {
     UserDetailsView()
+        .environmentObject(User())
 }

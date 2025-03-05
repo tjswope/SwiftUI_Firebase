@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SwiftUI_FirebaseApp: App {
+    @StateObject var user: User = User()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(user)
         }
     }
 }
