@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct Constants{
-    static let textFont: Font = Font(UIFont(name: "HelveticaNeue-Thin", size: 24) ?? UIFont.systemFont(ofSize: 24))
+    static let textFont: Font = Font(UIFont(name: "HelveticaNeue-Thin", size: 22) ?? UIFont.systemFont(ofSize: 22))
 }
 
 
