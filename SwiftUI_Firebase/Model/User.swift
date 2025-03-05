@@ -8,12 +8,12 @@
 import Foundation
 
 class User: ObservableObject{
-    @Published var userName: String
+    @Published var email: String
     @Published var password: String
     @Published var isAuthenticated: Bool = false
     
-    init(userName: String = "", password: String = "") {
-        self.userName = userName
+    init(email: String = "", password: String = "") {
+        self.email = email
         self.password = password
     }
 }
