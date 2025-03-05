@@ -21,9 +21,9 @@ struct LoginView: View {
                     .frame(width: 200, height: 200)
                 Spacer()
                 HStack {
-                    Text("User Name:")
+                    Text("email:")
                         .font(Constants.textFont)
-                    TextField("user name", text: $user.userName)
+                    TextField("email", text: $user.email)
                         .font(Constants.textFont)
                 }.padding()
                 HStack {
