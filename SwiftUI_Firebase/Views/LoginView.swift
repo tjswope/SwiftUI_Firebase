@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseDatabase
 
 struct LoginView: View {
     @EnvironmentObject var user: User
@@ -53,11 +54,19 @@ struct LoginView: View {
                 }.padding()
                 Button {
                     Task{
-                        let result = try? await Auth.auth().signIn(withEmail: user.email, password: user.password)
-                        if let _ = result{
-                            user.isAuthenticated = true
-                        }
+                        guard let result = try? await Auth.auth().signIn(withEmail: user.email, password: user.password) else {return}
+                        
+                        user.isAuthenticated = true
+                        
+                        guard let uid = Auth.auth().currentUser?.uid else {return}
+                        
+                        guard let data = try? await Database.database().reference().child("users/\(uid)").getData() else {return}
+                        
+                        // cast data.value to a dictionary and pass to decode
+                        guard let dictionary = data.value as? [String: String] else {return}
+                        user.decode(data: dictionary)
                     }
+                    
                 } label: {
                     ZStack{
                         Rectangle()
