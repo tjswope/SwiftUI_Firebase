@@ -13,7 +13,7 @@ struct LoginView: View {
     var body: some View {
         ZStack{
             Rectangle()
-                .foregroundStyle(Color.background)
+                .foregroundStyle(Color.backGroundGrey)
             VStack {
                 Spacer()
                 Image("logo")
